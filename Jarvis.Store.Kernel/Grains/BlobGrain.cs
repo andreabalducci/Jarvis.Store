@@ -1,13 +1,8 @@
 using System.Threading.Tasks;
-using Orleans;
+using Jarvis.Store.Client.Grains;
 
-namespace Jarvis.Store.Grains
+namespace Jarvis.Store.Kernel.Grains
 {
-    public interface IBlobGrain : IGrainWithStringKey
-    {
-        Task<int> GetVersion();
-    }
-
     public class BlobGrain : Orleans.Grain, IBlobGrain
     {
         private int _version = 0;

@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
-using Jarvis.Store.Grains;
+using Jarvis.Store.Client.Grains;
+using Jarvis.Store.Kernel.Grains;
 using Microsoft.AspNetCore.Mvc;
 using Orleans;
 

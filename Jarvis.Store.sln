@@ -1,6 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.Store", "Jarvis.Store\Jarvis.Store.csproj", "{FC95CD54-F914-4515-B2AD-04D21BB24874}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jarvis.Store", "Jarvis.Store\Jarvis.Store.csproj", "{FC95CD54-F914-4515-B2AD-04D21BB24874}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.Store.Kernel", "Jarvis.Store.Kernel\Jarvis.Store.Kernel.csproj", "{1B087E2A-55F9-4F50-92ED-058457F6EFCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.Store.Client", "Jarvis.Store.Client\Jarvis.Store.Client.csproj", "{BDA3A0D7-3CF5-4EDE-8911-6EF7B33F8D4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +19,19 @@ Global
 		{FC95CD54-F914-4515-B2AD-04D21BB24874}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC95CD54-F914-4515-B2AD-04D21BB24874}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC95CD54-F914-4515-B2AD-04D21BB24874}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B087E2A-55F9-4F50-92ED-058457F6EFCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B087E2A-55F9-4F50-92ED-058457F6EFCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B087E2A-55F9-4F50-92ED-058457F6EFCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B087E2A-55F9-4F50-92ED-058457F6EFCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA3A0D7-3CF5-4EDE-8911-6EF7B33F8D4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA3A0D7-3CF5-4EDE-8911-6EF7B33F8D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA3A0D7-3CF5-4EDE-8911-6EF7B33F8D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA3A0D7-3CF5-4EDE-8911-6EF7B33F8D4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {597E98EC-366F-4700-9D7B-71BA99C152C2}
 	EndGlobalSection
 EndGlobal
