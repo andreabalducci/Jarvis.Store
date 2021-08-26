@@ -11,9 +11,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Jarvis.Store.Client\Jarvis.Store.Client.csproj" />
   </ItemGroup>
 

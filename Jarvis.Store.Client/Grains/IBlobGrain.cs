@@ -5,6 +5,6 @@ namespace Jarvis.Store.Client.Grains
 {
     public interface IBlobGrain : IGrainWithStringKey
     {
-        Task<int> GetVersion();
+        Task<int> ReadAsync();
     }
 }

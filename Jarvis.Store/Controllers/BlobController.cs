@@ -17,11 +17,11 @@ namespace Jarvis.Store.Controllers
             _client = client;
         }
 
-        [HttpGet("version/{id}")]
-        public async Task<int> GetVersion(string id)
+        [HttpGet("read/{id}")]
+        public async Task<int> Read(string id)
         {
             var grain = _client.GetGrain<IBlobGrain>(id);
-            return await grain.GetVersion();
+            return await grain.ReadAsync();
         }
     }
 }
