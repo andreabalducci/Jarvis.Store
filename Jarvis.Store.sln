@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.Store.Kernel", "Jarv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.Store.Client", "Jarvis.Store.Client\Jarvis.Store.Client.csproj", "{BDA3A0D7-3CF5-4EDE-8911-6EF7B33F8D4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jarvis.Store.Service", "Jarvis.Store.Service\Jarvis.Store.Service.csproj", "{5118BB33-3A0A-40C1-96E6-F9D4177D854D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BDA3A0D7-3CF5-4EDE-8911-6EF7B33F8D4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDA3A0D7-3CF5-4EDE-8911-6EF7B33F8D4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDA3A0D7-3CF5-4EDE-8911-6EF7B33F8D4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5118BB33-3A0A-40C1-96E6-F9D4177D854D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5118BB33-3A0A-40C1-96E6-F9D4177D854D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5118BB33-3A0A-40C1-96E6-F9D4177D854D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5118BB33-3A0A-40C1-96E6-F9D4177D854D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

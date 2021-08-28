@@ -1,0 +1,23 @@
+@page "/counter"
+@using Orleans
+@using Jarvis.Store.Client.Grains
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+
+    [Inject]
+    public IClusterClient ClusterClient { get; set; }
+
+    private int currentCount = 0;
+
+    private async Task IncrementCount()
+    {
+        this.currentCount = await ClusterClient.GetGrain<IBlobGrain>("counter").ReadAsync();
+    }
+
+}
