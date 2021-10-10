@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Jarvis.Store.Service.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -14,6 +15,8 @@ using Radzen;
 
 namespace Jarvis.Store.Service
 {
+    
+    
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -27,6 +30,8 @@ namespace Jarvis.Store.Service
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
+            
             services.AddRouting(options => options.LowercaseUrls = true);
 
             services.AddControllers();
@@ -44,6 +49,8 @@ namespace Jarvis.Store.Service
             services.AddScoped<NotificationService>();
             services.AddScoped<TooltipService>();
             services.AddScoped<ContextMenuService>();
+            services.AddScoped<ThemeState>();
+            services.AddScoped<ExampleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

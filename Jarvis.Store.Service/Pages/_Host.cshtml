@@ -31,5 +31,13 @@
 
 <script src="_framework/blazor.server.js"></script>
 <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+<script>
+        function setTitle(title) {
+            document.title = title;
+        }
+        function scrollToBottom(ref) {
+            ref.scrollTop = ref.scrollHeight;
+        }
+    </script>
 </body>
 </html>
