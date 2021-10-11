@@ -50,7 +50,7 @@ namespace Jarvis.Store.Service
             services.AddScoped<TooltipService>();
             services.AddScoped<ContextMenuService>();
             services.AddScoped<ThemeState>();
-            services.AddScoped<ExampleService>();
+            services.AddScoped<MenuService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
