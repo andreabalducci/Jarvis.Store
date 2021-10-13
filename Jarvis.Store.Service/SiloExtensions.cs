@@ -15,14 +15,14 @@ namespace Jarvis.Store.Service
                 .AddMemoryGrainStorage("store-data");
         }
 
-        public static ISiloBuilder ConfigureCluster(this ISiloBuilder siloBuilder)
+        public static ISiloBuilder ConfigureCluster(this ISiloBuilder siloBuilder, int siloPort, int gatewayPort)
         {
             return siloBuilder.Configure<ClusterOptions>(options =>
                 {
                     options.ClusterId = "dev";
                     options.ServiceId = "jarvis-blob-store";
                 })
-                .ConfigureEndpoints(siloPort: 11111, gatewayPort: 30000)
+                .ConfigureEndpoints(siloPort, gatewayPort)
                 .ConfigureApplicationParts(parts => parts
                     .AddApplicationPart(typeof(BlobGrain).Assembly)
                     .WithReferences()

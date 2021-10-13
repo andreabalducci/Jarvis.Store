@@ -9,7 +9,8 @@
   },
   "profiles": {
     "IIS Express": {
-      "commandName": "IISExpress",
+      "commandName": "Executable",
+      "commandLineArgs": "--silo-port 12345 ",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -17,12 +18,13 @@
     },
     "Jarvis.Store.Service": {
       "commandName": "Project",
-      "dotnetRunMessages": "true",
+      "commandLineArgs": "--silo-port 11111 --worker --dashboard-port 8000",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "dotnetRunMessages": "true",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
   }
 }
