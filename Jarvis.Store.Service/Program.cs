@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using System.CommandLine;
 using System.CommandLine.Invocation;
+using System.Threading.Tasks;
 using Orleans;
 
 namespace Jarvis.Store.Service
@@ -13,13 +14,15 @@ namespace Jarvis.Store.Service
         private static int DashboardPort { get; set; } = 8000;
         private static bool WorkerNode { get; set; } = false;
 
-        public static void Main(string[] args)
+        public static async Task<int> Main(string[] args)
         {
-            ParseCommandLine(args);
-            CreateHostBuilder(args).Build().Run();
+            var rootCommand = CreateCommandLineParser(args);
+            
+            // Parse the incoming args and invoke the handler
+            return await rootCommand.InvokeAsync(args);
         }
 
-        private static void ParseCommandLine(string[] args)
+        private static RootCommand CreateCommandLineParser(string[] args)
         {
             // Create a root command with some options
             var rootCommand = new RootCommand
@@ -42,19 +45,19 @@ namespace Jarvis.Store.Service
                     "Should run as worker node (no api / ui)")
             };
 
-            rootCommand.Description = Constants.ApplicationName;
+            rootCommand.Description = "Jarvis Store Service";
 
             // Note that the parameters of the handler method are matched according to the names of the options
-            rootCommand.Handler = CommandHandler.Create<int, int, int, bool>((silo, gateway, dashboard, worker) =>
+            rootCommand.Handler = CommandHandler.Create<int, int, int, bool>(async (silo, gateway, dashboard, worker) =>
             {
                 GatewayPort = gateway;
                 SiloPort = silo;
                 DashboardPort = dashboard;
                 WorkerNode = worker;
-            });
 
-            // Parse the incoming args and invoke the handler
-            rootCommand.Invoke(args);
+                await CreateHostBuilder(args).Build().RunAsync();
+            });
+            return rootCommand;
         }
 
         private static IHostBuilder CreateHostBuilder(string[] args)
