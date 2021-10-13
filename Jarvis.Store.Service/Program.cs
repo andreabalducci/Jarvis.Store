@@ -3,7 +3,12 @@ using Microsoft.Extensions.Hosting;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.Threading.Tasks;
+using Jarvis.Store.Kernel.Support;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Orleans;
+using Orleans.Hosting;
+using Orleans.Runtime;
 
 namespace Jarvis.Store.Service
 {
@@ -17,7 +22,7 @@ namespace Jarvis.Store.Service
         public static async Task<int> Main(string[] args)
         {
             var rootCommand = CreateCommandLineParser(args);
-            
+
             // Parse the incoming args and invoke the handler
             return await rootCommand.InvokeAsync(args);
         }
@@ -63,19 +68,29 @@ namespace Jarvis.Store.Service
         private static IHostBuilder CreateHostBuilder(string[] args)
         {
             var builder = Host.CreateDefaultBuilder(args)
-                .ConfigureServices(sp => { })
-                .UseOrleans(builder =>
-                {
-                    builder
-                        .UseMongo()
-                        //                        .MemoryDevMode()
-                        .ConfigureCluster(SiloPort, GatewayPort);
-
-                    if (DashboardPort > 0)
+                    .UseOrleans(builder =>
                     {
-                        builder.UseDashboard(options => { options.Port = DashboardPort; });
-                    }
-                });
+                        builder
+                            // .UseMongo()
+                            .MemoryDevMode()
+                            .ConfigureCluster(SiloPort, GatewayPort);
+
+                        if (DashboardPort > 0)
+                        {
+                            builder.UseDashboard(options => { options.Port = DashboardPort; });
+                        }
+
+                        builder.ConfigureServices(services =>
+                        {
+                            //  sp.AddSingleton<IGrainActivator, TenantAwareGrainActivator>();
+                            services.Replace(
+                                ServiceDescriptor.Singleton(typeof(IGrainActivator),
+                                    typeof(TenantAwareGrainActivator))
+                            );
+                        });
+                    })
+                    .ConfigureServices(sp => { })
+                ;
 
             if (!WorkerNode)
             {
