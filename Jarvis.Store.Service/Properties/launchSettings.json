@@ -18,7 +18,7 @@
     },
     "Jarvis.Store.Service": {
       "commandName": "Project",
-      "commandLineArgs": "--silo-port 11111 --worker --dashboard-port 8000",
+      "commandLineArgs": "--dashboard-port 8000",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
