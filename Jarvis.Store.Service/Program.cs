@@ -5,9 +5,7 @@ using System.CommandLine.Invocation;
 using System.Threading.Tasks;
 using Jarvis.Store.Kernel.Support;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Orleans;
-using Orleans.Hosting;
 using Orleans.Runtime;
 
 namespace Jarvis.Store.Service
@@ -79,17 +77,12 @@ namespace Jarvis.Store.Service
                         {
                             builder.UseDashboard(options => { options.Port = DashboardPort; });
                         }
-
-                        builder.ConfigureServices(services =>
-                        {
-                            //  sp.AddSingleton<IGrainActivator, TenantAwareGrainActivator>();
-                            services.Replace(
-                                ServiceDescriptor.Singleton(typeof(IGrainActivator),
-                                    typeof(TenantAwareGrainActivator))
-                            );
-                        });
                     })
-                    .ConfigureServices(sp => { })
+                    .ConfigureServices(services =>
+                    {
+                        services.AddSingleton<IGrainActivator, TenantAwareGrainActivator>();
+                        services.AddScoped<ITenantContext, TenantContext>();
+                    })
                 ;
 
             if (!WorkerNode)

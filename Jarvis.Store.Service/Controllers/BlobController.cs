@@ -17,7 +17,7 @@ namespace Jarvis.Store.Service.Controllers
         }
 
         [HttpGet("read/{id}")]
-        public async Task<int> Read(string id)
+        public async Task<string> Read(string id)
         {
             var grain = _client.GetGrain<IBlobGrain>(id);
             return await grain.ReadAsync();

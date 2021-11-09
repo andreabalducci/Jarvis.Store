@@ -6,17 +6,24 @@
 <h1>Hello, world!</h1>
 
 Welcome to @Constants.ApplicationName
-
-<RadzenButton Click="CounterClick">Counter is @_value</RadzenButton>
+<RadzenButton Click="TenantAClick">Value @_tenantA</RadzenButton>
+<RadzenButton Click="TenantBClick">Value @_tenantB</RadzenButton>
 
 
 @code
 {
-    int _value = 0;
+    string _tenantA = "";
+    string _tenantB = "";
 
-    private async Task CounterClick()
+    private async Task TenantAClick()
     {
-        var grain = GrainFactory.GetGrain<IBlobGrain>("the_one@tenant");
-        _value = await grain.ReadAsync();
+        var grainA = GrainFactory.GetGrain<IBlobGrain>("the_one@A");
+        _tenantA = await grainA.ReadAsync();
+    }    
+    
+    private async Task TenantBClick()
+    {
+        var grainB = GrainFactory.GetGrain<IBlobGrain>("the_one@B");
+        _tenantB = await grainB.ReadAsync();
     }
 }
