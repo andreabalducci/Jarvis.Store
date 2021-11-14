@@ -8,8 +8,8 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Orleans.Server" Version="3.5.1" />
         <PackageReference Include="Orleans.Providers.MongoDB" Version="3.4.0" />
-        <PackageReference Include="OrleansDashboard" Version="3.5.2" />
-        <PackageReference Include="Radzen.Blazor" Version="3.11.12" />
+        <PackageReference Include="OrleansDashboard" Version="3.6.1" />
+        <PackageReference Include="Radzen.Blazor" Version="3.12.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
         <PackageReference Include="Microsoft.Orleans.CodeGenerator.MSBuild" Version="3.5.1">
             <PrivateAssets>all</PrivateAssets>

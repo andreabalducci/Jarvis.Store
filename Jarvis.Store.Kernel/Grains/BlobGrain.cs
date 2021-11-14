@@ -5,27 +5,19 @@ using Orleans.Runtime;
 
 namespace Jarvis.Store.Kernel.Grains
 {
-    public class BlobState
-    {
-        public int Reads { get; set; }
-    }
-
     public class BlobGrain : Orleans.Grain, IBlobGrain
     {
-        private readonly IPersistentState<BlobState> _state;
         private readonly ITenantContext _tenant;
-
-        public BlobGrain([PersistentState("blob", "store-data")]IPersistentState<BlobState> state, ITenantContext tenant)
+        private int _counter;
+        public BlobGrain( ITenantContext tenant)
         {
-            _state = state;
             _tenant = tenant;
         }
 
-        public async Task<string> ReadAsync()
+        public Task<string> ReadAsync()
         {
-            _state.State.Reads++;
-            await _state.WriteStateAsync();
-            return $" {_tenant.Name} => {_state.State.Reads}";
+            _counter++;
+            return Task.FromResult($" {_tenant.Name} => {_counter}");
         }
     }
 }
