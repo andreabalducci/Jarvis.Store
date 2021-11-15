@@ -37,7 +37,7 @@ namespace Jarvis.Store.Service
                 })
                 .ConfigureEndpoints(siloPort, gatewayPort)
                 .ConfigureApplicationParts(parts => parts
-                    .AddApplicationPart(typeof(BlobGrain).Assembly)
+                    .AddApplicationPart(typeof(SampleGrain).Assembly)
                     .WithReferences()
                 );
         }

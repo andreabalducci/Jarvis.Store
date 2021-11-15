@@ -3,7 +3,7 @@ using Orleans;
 
 namespace Jarvis.Store.Client.Grains
 {
-    public interface IBlobGrain : IGrainWithStringKey
+    public interface ISampleGrain : IGrainWithStringKey
     {
         Task<string> ReadAsync();
     }

@@ -19,7 +19,7 @@ namespace Jarvis.Store.Service.Controllers
         [HttpGet("read/{id}")]
         public async Task<string> Read(string id)
         {
-            var grain = _client.GetGrain<IBlobGrain>(id);
+            var grain = _client.GetGrain<ISampleGrain>(id);
             return await grain.ReadAsync();
         }
     }

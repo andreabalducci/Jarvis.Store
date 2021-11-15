@@ -7,6 +7,7 @@ using Jarvis.Store.Kernel.Support;
 using Microsoft.Extensions.DependencyInjection;
 using Orleans;
 using Orleans.Runtime;
+using Serilog;
 
 namespace Jarvis.Store.Service
 {
@@ -19,10 +20,14 @@ namespace Jarvis.Store.Service
 
         public static async Task<int> Main(string[] args)
         {
+            LoggerRuntime.Init();
             var rootCommand = CreateCommandLineParser(args);
 
             // Parse the incoming args and invoke the handler
-            return await rootCommand.InvokeAsync(args);
+            var result = await rootCommand.InvokeAsync(args);
+            LoggerRuntime.Shutdown();
+
+            return result;
         }
 
         private static RootCommand CreateCommandLineParser(string[] args)
@@ -66,6 +71,7 @@ namespace Jarvis.Store.Service
         private static IHostBuilder CreateHostBuilder(string[] args)
         {
             var builder = Host.CreateDefaultBuilder(args)
+                    .UseSerilog()
                     .UseOrleans(builder =>
                     {
                         builder

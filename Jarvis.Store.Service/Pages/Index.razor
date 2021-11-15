@@ -17,13 +17,13 @@ Welcome to @Constants.ApplicationName
 
     private async Task TenantAClick()
     {
-        var grainA = GrainFactory.GetGrain<IBlobGrain>("the_one@A");
+        var grainA = GrainFactory.GetGrain<ISampleGrain>("the_one@A");
         _tenantA = await grainA.ReadAsync();
     }    
     
     private async Task TenantBClick()
     {
-        var grainB = GrainFactory.GetGrain<IBlobGrain>("the_one@B");
+        var grainB = GrainFactory.GetGrain<ISampleGrain>("the_one@B");
         _tenantB = await grainB.ReadAsync();
     }
 }
