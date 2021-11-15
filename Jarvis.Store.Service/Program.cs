@@ -3,9 +3,12 @@ using Microsoft.Extensions.Hosting;
 using System.CommandLine;
 using System.CommandLine.Invocation;
 using System.Threading.Tasks;
+using Jarvis.Store.Client.Grains;
+using Jarvis.Store.Kernel.Grains;
 using Jarvis.Store.Kernel.Support;
 using Microsoft.Extensions.DependencyInjection;
 using Orleans;
+using Orleans.Hosting;
 using Orleans.Runtime;
 using Serilog;
 
@@ -77,6 +80,7 @@ namespace Jarvis.Store.Service
                         builder
                             // .UseMongo()
                             .MemoryDevMode()
+                            .AddGrainService<SiloHouseKeeperServiceGrain>()
                             .ConfigureCluster(SiloPort, GatewayPort);
 
                         if (DashboardPort > 0)
@@ -88,6 +92,7 @@ namespace Jarvis.Store.Service
                     {
                         services.AddSingleton<IGrainActivator, TenantAwareGrainActivator>();
                         services.AddScoped<ITenantContext, TenantContext>();
+                        services.AddSingleton<ISiloHouseKeeperServiceClient, SiloHouseKeeprServiceClient>();
                     })
                 ;
 

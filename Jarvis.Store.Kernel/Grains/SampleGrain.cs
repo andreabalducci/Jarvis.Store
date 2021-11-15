@@ -15,11 +15,12 @@ namespace Jarvis.Store.Kernel.Grains
         private int _counter;
         private readonly ILogger _logger = Log.ForContext<SampleGrain>();
         private readonly ILocalMetricsGrain _metrics;
-
-        public SampleGrain(ITenantContext tenant, IGrainFactory factory)
+        private readonly ISiloHouseKeeperServiceClient _housekeeper;
+        public SampleGrain(ITenantContext tenant, IGrainFactory factory, ISiloHouseKeeperServiceClient housekeeper)
         {
             _tenant = tenant;
             _factory = factory;
+            _housekeeper = housekeeper;
 
             _metrics =  _factory.GetGrain<ILocalMetricsGrain>($"metrics@{tenant.Name}");
         }
@@ -30,6 +31,11 @@ namespace Jarvis.Store.Kernel.Grains
             _counter++;
 
             _metrics.Inc("ReadyAsync").Ignore();
+
+            if (_counter % 3 == 0)
+            {
+                await _housekeeper.Clear(this.GrainReference);
+            }
             
             return $" {_tenant.Name} => {_counter}";
         }
